@@ -5,6 +5,8 @@ import lombok.*;
 import java.util.Objects;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Hammer {
     public int size;
     public int weight;

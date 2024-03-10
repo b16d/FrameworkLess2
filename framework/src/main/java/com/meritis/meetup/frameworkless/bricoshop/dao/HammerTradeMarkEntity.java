@@ -1,34 +1,30 @@
 package com.meritis.meetup.frameworkless.bricoshop.dao;
 
+import com.meritis.meetup.frameworkless.hammer.lombok.data.Hammer;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
+@Entity(name = "trade_mark_hammer")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Hammer")
-public class HammerEntity {
+@AllArgsConstructor
+public class HammerTradeMarkEntity {
     @Id
     private UUID id;
 
     @Column
-    private String Name;
+    private String name;
 
-    @Column
-    private int size;
-
-    @Column
-    private int weight;
-
-    @ManyToOne
-    @JoinColumn(name = "trade_mark_id")
-    private HammerTradeMarkEntity hammerTradeMark;
+    @OneToMany(mappedBy = "hammerTradeMark")
+    private List<HammerEntity> hammers;
 }

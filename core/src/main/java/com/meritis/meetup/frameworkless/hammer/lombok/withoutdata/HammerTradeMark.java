@@ -15,4 +15,5 @@ import java.util.List;
 @AllArgsConstructor
 public class HammerTradeMark {
     public List<Hammer> hammers;
+    public String name;
 }
