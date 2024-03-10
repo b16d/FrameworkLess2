@@ -1,4 +1,4 @@
-package meetup.frameworkless.basic;
+package com.meritis.meetup.frameworkless.basic;
 
 import java.util.Objects;
 
