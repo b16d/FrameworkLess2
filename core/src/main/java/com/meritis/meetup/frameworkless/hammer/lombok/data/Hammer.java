@@ -1,4 +1,4 @@
-package com.meritis.meetup.frameworkless.lombok.data;
+package com.meritis.meetup.frameworkless.hammer.lombok.data;
 
 import lombok.*;
 
