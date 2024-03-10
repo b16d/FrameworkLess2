@@ -22,7 +22,7 @@ public class HammerTradeMarkEntity {
     @Id
     private UUID id;
 
-    @Column
+    @Column(name = "trade_mark_name")
     private String name;
 
     @OneToMany(mappedBy = "hammerTradeMark")
