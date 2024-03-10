@@ -13,7 +13,7 @@ public class JdbiConfiguration {
     public Jdbi createJdbi() {
         if (Objects.isNull(jdbi)) {
             try {
-                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/bricoshop", "postgres", "admin");
+                Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/postgres", "postgres", "admin");
                 jdbi = Jdbi.create(connection);
             } catch (SQLException e) {
                 throw new IllegalStateException("Unable to connect to database", e);
