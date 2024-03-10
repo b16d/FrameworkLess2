@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 public class HammerApplication {
     public static void main(String[] args) {
         LocalDateTime now = LocalDateTime.now();
-        Javalin.create(new ControllerFactory()::createAndBindController)
-               .start(8081);
-       LocalDateTime fin = LocalDateTime.now();
+        Javalin start = Javalin.create(new ControllerFactory()::createAndBindController)
+                               .start(8081);
+        LocalDateTime fin = LocalDateTime.now();
        System.out.println("Temps démarrage : " + Duration.between(now, fin).toMillis() + "ms");
     }
 }

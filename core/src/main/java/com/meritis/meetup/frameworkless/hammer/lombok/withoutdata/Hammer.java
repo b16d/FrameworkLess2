@@ -10,4 +10,5 @@ import lombok.*;
 public class Hammer {
     public int size;
     public int weight;
+    public String name;
 }

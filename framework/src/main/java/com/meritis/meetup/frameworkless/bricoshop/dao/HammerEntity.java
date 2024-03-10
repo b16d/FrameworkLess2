@@ -19,4 +19,10 @@ public class HammerEntity {
 
     @Column
     private String Name;
+
+    @Column
+    private int size;
+
+    @Column
+    private int weight;
 }

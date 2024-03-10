@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Hammer {
     public int size;
     public int weight;
+    public String name;
 
 }
 
