@@ -41,4 +41,10 @@ public class HammerController {
         HammerTradeMark hammerTradeMark = hammerTradeMarkService.retrieveTradeMarkHammer(tradeMarkId);
         return ResponseEntity.ok(hammerTradeMark);
     }
+
+    @GetMapping("/tradeMarks/hammers")
+    public ResponseEntity<String> retrieveAll() {
+        String duration = hammerTradeMarkService.durationForRetrievingAllHammers();
+        return ResponseEntity.ok(duration);
+    }
 }

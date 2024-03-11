@@ -26,6 +26,7 @@ public class HammerController implements Controller {
         get("/helloworld", this::helloworld);
         get("/hammer/{id}", this::retrieveHammer);
         get("/tradeMark/{id}/hammers", this::retrieveHammerTradeMark);
+        get("/tradeMarks/hammers", this::retrieveAll);
     }
 
     public void helloworld(Context ctx) {
@@ -40,5 +41,10 @@ public class HammerController implements Controller {
     public void retrieveHammerTradeMark(Context ctx) {
         HammerTradeMark tradeMark = hammerTradeMarkService.retrieveTradeMarkHammer(ctx.pathParamAsClass("id", HammerTradeMarkId.class).get());
         ctx.json(tradeMark).status(200);
+    }
+
+    public void retrieveAll(Context ctx) {
+        long duration = hammerTradeMarkService.durationForRetrievingAllHammers();
+        ctx.result(duration + "ms").status(200);
     }
 }

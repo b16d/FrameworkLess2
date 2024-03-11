@@ -5,6 +5,7 @@ import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.reflect.ConstructorMapper;
 import org.jdbi.v3.core.result.RowView;
 
+import java.util.List;
 import java.util.Map;
 
 public class HammerTradeMarkDao {
@@ -31,6 +32,21 @@ public class HammerTradeMarkDao {
                                                .reduceRows(this::reduceTradeMarkRow))
                    .findFirst()
                    .orElseThrow();
+    }
+
+    public List<HammerTradeMarkEntity> retrieveAll() {
+        return jdbi.withHandle(handle -> handle.createQuery("""
+                                                       Select
+                                                             tradeMark.trade_mark_name as tradeMarkName,
+                                                             hammer.id as id,
+                                                             hammer.name as name,
+                                                             hammer.weight as weight,
+                                                             hammer.size as size
+                                                       from trade_mark_hammer tradeMark
+                                                       inner join hammer hammer on hammer.trade_mark_id = tradeMark.id
+                                                             """)
+                                               .reduceRows(this::reduceTradeMarkRow))
+                   .toList();
     }
 
     private void reduceTradeMarkRow(Map<String, HammerTradeMarkEntity> map, RowView rowView) {

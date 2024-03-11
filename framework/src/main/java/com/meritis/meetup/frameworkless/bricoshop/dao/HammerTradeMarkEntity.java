@@ -10,6 +10,8 @@ import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 import java.util.UUID;
@@ -26,5 +28,6 @@ public class HammerTradeMarkEntity {
     private String name;
 
     @OneToMany(mappedBy = "hammerTradeMark")
+    @Fetch(FetchMode.JOIN)
     private List<HammerEntity> hammers;
 }

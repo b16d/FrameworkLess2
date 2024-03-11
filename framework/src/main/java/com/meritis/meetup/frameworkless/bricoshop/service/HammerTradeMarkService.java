@@ -7,6 +7,8 @@ import com.meritis.meetup.frameworkless.hammer.lombok.data.HammerTradeMark;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,5 +28,11 @@ public class HammerTradeMarkService {
                                                     .map(ham -> new Hammer(ham.getSize(), ham.getWeight(), ham.getName()))
                                                     .toList();
         return new HammerTradeMark(hammers, hammerTradeMarkEntity.getName());
+    }
+
+    public String durationForRetrievingAllHammers() {
+        LocalDateTime begin = LocalDateTime.now();
+        List<HammerTradeMarkEntity> allHammers = hammerTradeMarkRepository.findAll();
+        return Duration.between(begin, LocalDateTime.now()).toMillis() + "ms";
     }
 }

@@ -6,7 +6,10 @@ import com.meritis.meetup.frameworkless.bricoshop.service.model.HammerTradeMarkI
 import com.meritis.meetup.frameworkless.hammer.record.Hammer;
 import com.meritis.meetup.frameworkless.hammer.record.HammerTradeMark;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Locale;
 
 public class HammerTradeMarkService {
     private final HammerTradeMarkDao hammerTradeMarkDao;
@@ -22,5 +25,11 @@ public class HammerTradeMarkService {
                                      .map(ham -> new Hammer(ham.size(), ham.weight(), ham.name()))
                                      .toList();
         return new HammerTradeMark(hammers, entity.tradeMarkName());
+    }
+
+    public long durationForRetrievingAllHammers() {
+        LocalDateTime begin = LocalDateTime.now();
+        List<HammerTradeMarkEntity> hammerTradeMarkEntities = hammerTradeMarkDao.retrieveAll();
+        return Duration.between(begin, LocalDateTime.now()).toMillis();
     }
 }
