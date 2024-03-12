@@ -13,7 +13,11 @@ public class HammerDao {
     }
 
     public HammerEntity retrieveHammerById(HammerId hammerId) {
-        return jdbi.withHandle(handle -> handle.createQuery("Select id, name, size, height from hammer where id = :id")
+        return jdbi.withHandle(handle -> handle.createQuery("""
+                Select id, name, size, height 
+                from hammer 
+                where id = :id
+                """)
                 .bind("id", hammerId.id())
                 .mapTo(HammerEntity.class)
                 .one());
